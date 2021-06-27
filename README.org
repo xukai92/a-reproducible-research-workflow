@@ -37,15 +37,15 @@ def fib(n):
 - Export to different formats
   - Formatting reveal.js
     #+begin_src
-  #+OPTIONS: toc:nil reveal_width:1200 reveal_height:900
-  #+REVEAL_MIN_SCALE: 0.6
-  #+REVEAL_MAX_SCALE: 0.8
-  #+REVEAL_TRANS: slide
-  #+REVEAL_THEME: simple
-  #+REVEAL_PLUGINS: (markdown highlight search)
-  #+REVEAL_HLEVEL: 2
-  #+REVEAL_HEAD_PREAMBLE: <style> .reveal img { margin: 0; } </style>
-  #+REVEAL_EXTRA_CSS: /Users/kai/org/revealjs.css
+#+OPTIONS: toc:nil reveal_width:1200 reveal_height:900
+#+REVEAL_MIN_SCALE: 0.6
+#+REVEAL_MAX_SCALE: 0.8
+#+REVEAL_TRANS: slide
+#+REVEAL_THEME: simple
+#+REVEAL_PLUGINS: (markdown highlight search)
+#+REVEAL_HLEVEL: 2
+#+REVEAL_HEAD_PREAMBLE: <style> .reveal img { margin: 0; } </style>
+#+REVEAL_EXTRA_CSS: /Users/kai/org/revealjs.css
     #+end_src
 - Limitations of Org mode or Emacs
   + Learning curve
