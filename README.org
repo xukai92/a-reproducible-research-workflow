@@ -9,7 +9,7 @@
 - Check out demo scripts
   - Folder structure and each file
   - The main script with a CLI
-  - W&B short intro
+  - [[https://wandb.ai/][W&B]] short intro
   - A master script for batch execution
   - Parallel execution
 - It's a better practice to have off-line evaluation.
