@@ -1,0 +1,111 @@
+#+TITLE: Meeting 27 June 2021
+#+OPTIONS: toc:nil reveal_width:1200 reveal_height:900
+#+REVEAL_MIN_SCALE: 0.6
+#+REVEAL_MAX_SCALE: 0.8
+#+REVEAL_TRANS: slide
+#+REVEAL_THEME: simple
+#+REVEAL_PLUGINS: (markdown highlight search)
+#+REVEAL_HLEVEL: 2
+#+REVEAL_HEAD_PREAMBLE: <style> .reveal img { margin: 0; } </style>
+#+REVEAL_EXTRA_CSS: /Users/kai/org/revealjs.css
+
+* Experimental results
+I did a sweep for learning rates and batch sizes.
+Here is the raw data as a reference.
+#+begin_src jupyter-python :exports results
+import os, sys
+PROJ_DIR = os.path.expanduser("~/projects/a-reproducible-research-workflow")
+SCRIPTS_DIR = os.path.join(PROJ_DIR, "scripts")
+sys.path.insert(0, SCRIPTS_DIR)
+
+from report_exp_1 import *
+
+df = collect_results()
+[list(df)] + [None] + df.values.tolist()
+#+end_src
+
+#+RESULTS:
+| Learning rate | Batch size |             Accuracy |
+|---------------+------------+----------------------|
+|         0.001 |       60.0 |   0.0823057805696924 |
+|         0.001 |       80.0 | 0.008542542004919662 |
+|           1.0 |       40.0 |   0.8235769916405886 |
+|           0.1 |       40.0 |  0.09062541665893886 |
+|           0.1 |       40.0 |   0.3778760934258266 |
+|           1.0 |       80.0 |   0.6889667905535839 |
+|          0.01 |       80.0 |   0.5752666456514326 |
+|           1.0 |       60.0 |   0.2503172041111634 |
+|           1.0 |      100.0 |   0.7446997489116024 |
+|         0.001 |       20.0 |   0.6795368874866567 |
+|           0.1 |       80.0 |  0.07104381508017199 |
+|         0.001 |       60.0 |   0.7833632510132195 |
+|          0.01 |       60.0 |   0.5095558107088884 |
+|           0.1 |      100.0 |   0.2060060415139422 |
+|         0.001 |       40.0 | 0.007888810851586547 |
+|          0.01 |      100.0 |   0.4269709870706172 |
+|          0.01 |      100.0 |  0.06459377808444089 |
+|          0.01 |       40.0 |   0.5590159733898531 |
+|          0.01 |       80.0 |  0.09259955855579094 |
+|           0.1 |       20.0 |  0.15187769971293985 |
+|           0.1 |       80.0 |  0.05515575830997499 |
+|         0.001 |       20.0 |   0.8722964769320698 |
+|           1.0 |       40.0 |   0.6659122727094183 |
+|         0.001 |      100.0 |   0.9165631901675563 |
+|         0.001 |      100.0 |   0.7669769170531903 |
+|           1.0 |       80.0 |   0.9805537843506121 |
+|           1.0 |      100.0 |  0.15354754162984063 |
+|           1.0 |       64.0 |  0.17192125468912767 |
+|          0.01 |       20.0 |  0.10434259320079442 |
+|          0.01 |       60.0 |   0.9683729098851316 |
+|         0.001 |       40.0 |    0.054371923435381 |
+|          0.01 |       40.0 |   0.9486497022496034 |
+|           0.1 |      100.0 |   0.3141306684357783 |
+|          0.01 |       20.0 |   0.9371281646073785 |
+|         0.001 |       80.0 |   0.7127041547238335 |
+|           1.0 |       64.0 |  0.21458595730782404 |
+|           1.0 |       20.0 |   0.5514880935526211 |
+|           0.1 |       60.0 |  0.17861754429681964 |
+|           0.1 |       64.0 |   0.4622139395830783 |
+|           0.1 |       20.0 |    0.409609093357691 |
+|           0.1 |       60.0 |   0.6309810213777699 |
+|           1.0 |       60.0 |   0.9556066900188527 |
+|           1.0 |       20.0 |    0.915531457266271 |
+
+** Experimental results (aggregated)
+I did a sweep for learning rates and batch sizes.
+This is how the averaged accuracy changes with learning rates.
+#+begin_src jupyter-python :exports results
+import os, sys
+fig = make_plot(df)
+plt.close(fig)
+fig
+#+end_src
+
+#+RESULTS:
+[[file:./.ob-jupyter/c01406afab9a5a82c6a53b048642121aa6fba002.png]]
+
+* Extra results in a table
+Just want to mention that the batch size also affects run time of the experiments a bit.
+#+NAME: run-time
+| Batch size | Run time |
+|------------+----------|
+|         20 |       10 |
+|         40 |        8 |
+|         60 |        6 |
+|         80 |        4 |
+|        100 |        2 |
+|        120 |        2 |
+
+#+begin_src jupyter-python :var run_time=run-time :exports results
+fig, ax = plt.subplots()
+ax.plot([c[0] for c in run_time], [c[1] for c in run_time])
+ax.set_xlabel("Batch size")
+ax.set_ylabel("Time")
+plt.close(fig)
+fig
+#+end_src
+
+#+RESULTS:
+[[file:./.ob-jupyter/140ff658aab932f0b62456020c8f24560fe0dd63.png]]
+
+Note to mention that editing tables in Org mode is enjoyable

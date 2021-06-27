@@ -1,0 +1,8 @@
+[default]
+gpu_id = 0
+
+seed = 1110
+
+num_epochs = 100
+batch_size = 64
+lr = 1.0

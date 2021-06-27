@@ -1,0 +1,52 @@
+#+TITLE: A Reproducible Research Workflow
+
+* Introduction
+1. Run experiments, monitor process and save results
+2. Collect results and display
+3. Communicating results
+
+* Run experiments and save results
+- Check out demo scripts
+  - Folder structure and each file
+  - The main script with a CLI
+  - W&B short intro
+  - A master script for batch execution
+  - Parallel execution
+- It's a better practice to have off-line evaluation.
+  - Easy to re-do evaluation
+  - Time saving
+
+* Collect results and display
+- Check out =notebooks/report-exp_1.ipynb=
+  - $\LaTeX$ tables made easy
+
+* Generate an informal report
+- [[https://en.wikipedia.org/wiki/Literate_programming][Literate programming]] via Org mode
+  - A [[https://www.jstatsoft.org/article/view/v046i03][paper]] on how literate programming is good for reproducible research
+#+begin_src jupyter-python
+def fib(n):
+    if n <= 2:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+#fib(4)
+#[fib(i) for i in range(5)]
+[["i", "fib(i)"]] + [None] + [[i, fib(i)] for i in range(5)]
+#+end_src
+- Check out =docs/meeting-27-june-2021.org=
+- Export to different formats
+  - Formatting reveal.js
+    #+begin_src
+  #+OPTIONS: toc:nil reveal_width:1200 reveal_height:900
+  #+REVEAL_MIN_SCALE: 0.6
+  #+REVEAL_MAX_SCALE: 0.8
+  #+REVEAL_TRANS: slide
+  #+REVEAL_THEME: simple
+  #+REVEAL_PLUGINS: (markdown highlight search)
+  #+REVEAL_HLEVEL: 2
+  #+REVEAL_HEAD_PREAMBLE: <style> .reveal img { margin: 0; } </style>
+  #+REVEAL_EXTRA_CSS: /Users/kai/org/revealjs.css
+    #+end_src
+- Limitations of Org mode or Emacs
+  + Learning curve
+  + Collaborative editing
